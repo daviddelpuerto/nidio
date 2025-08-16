@@ -3,7 +3,6 @@
   "version": "0.1.0",
   "description": "Nidio scaffolding CLI",
   "license": "MIT",
-  "type": "module",
   "bin": {
     "nidio": "./dist/index.js"
   },

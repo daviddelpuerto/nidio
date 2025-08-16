@@ -3,7 +3,6 @@
   "version": "0.1.0",
   "description": "Nidio public API: decorators, tokens, shared types, HTTP exceptions",
   "license": "MIT",
-  "type": "module",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "exports": {
