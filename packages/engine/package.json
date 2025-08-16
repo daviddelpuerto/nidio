@@ -1,0 +1,32 @@
+{
+  "name": "@nidio/engine",
+  "version": "0.1.0",
+  "description": "Nidio runtime utilities: DI, bootstrap, router, adapters (internal), logger facade",
+  "license": "MIT",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "engines": {
+    "node": ">=20.6.0"
+  },
+  "sideEffects": false,
+  "dependencies": {
+    "compression": "^1.8.1",
+    "express": "^5.1.0",
+    "fastify": "^5.4.0",
+    "helmet": "^8.1.0",
+    "pino": "^9.9.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

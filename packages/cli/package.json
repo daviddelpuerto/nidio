@@ -1,0 +1,32 @@
+{
+  "name": "@nidio/cli",
+  "version": "0.1.0",
+  "description": "Nidio scaffolding CLI",
+  "license": "MIT",
+  "type": "module",
+  "bin": {
+    "nidio": "./dist/index.js"
+  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "engines": {
+    "node": ">=20.6.0"
+  },
+  "sideEffects": false,
+  "dependencies": {
+    "commander": "^12.1.0",
+    "fast-glob": "^3.3.3"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
