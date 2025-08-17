@@ -4,15 +4,14 @@
   "description": "Nidio monorepo",
   "version": "0.1.0",
   "workspaces": [
-    "packages/*",
-    "examples/*"
+    "packages/*"
   ],
   "engines": {
     "node": ">=20.6.0"
   },
   "scripts": {
     "build": "tsc -b -v tsconfig.build.json",
-    "clean": "tsc -b tsconfig.build.json --clean && rimraf node_modules packages/*/dist examples/*/dist",
+    "clean": "tsc -b tsconfig.build.json --clean && rimraf node_modules packages/*/dist",
     "lint": "eslint . --ext .ts,.mts,.cts",
     "test": "vitest run",
     "release": "changeset version && npm run build && changeset publish"

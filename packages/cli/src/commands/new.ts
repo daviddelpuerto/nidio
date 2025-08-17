@@ -26,7 +26,6 @@ export function registerNewCommand(program: Command): void {
           `- Auto-install: ${options.install ? 'yes' : 'no'}`,
           '',
           'This is a skeleton command. In a future step, it will generate files.',
-          'For now, create your app manually in examples/basic-app or your workspace.',
           '',
         ].join('\n') + '\n',
       );
