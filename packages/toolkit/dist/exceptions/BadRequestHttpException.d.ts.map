@@ -1,0 +1,1 @@
+{"version":3,"file":"BadRequestHttpException.d.ts","sourceRoot":"","sources":["../../src/exceptions/BadRequestHttpException.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,aAAa,EAAE,MAAM,iBAAiB,CAAC;AAEhD,6BAA6B;AAC7B,qBAAa,uBAAwB,SAAQ,aAAa;IACxD,SAAgB,UAAU,EAAE,MAAM,CAAO;gBAC7B,OAAO,SAAgB,EAAE,QAAQ,CAAC,EAAE,OAAO;CAGxD"}

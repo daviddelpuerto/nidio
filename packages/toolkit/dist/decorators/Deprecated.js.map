@@ -1,0 +1,1 @@
+{"version":3,"file":"Deprecated.js","sourceRoot":"","sources":["../../src/decorators/Deprecated.ts"],"names":[],"mappings":";;AASA,gCASC;AAlBD,uDAAuD;AACvD,iEAAkD;AAElD;;;;;GAKG;AACH,SAAgB,UAAU,CAAC,OAAgB;IACzC,OAAO,CAAC,MAAM,EAAE,WAAW,EAAE,EAAE;QAC7B,OAAO,CAAC,cAAc,CACpB,+BAAQ,CAAC,UAAU,EACnB,OAAO,IAAI,YAAY,EACtB,MAAc,CAAC,WAAW,EAC3B,WAAqB,CACtB,CAAC;IACJ,CAAC,CAAC;AACJ,CAAC"}

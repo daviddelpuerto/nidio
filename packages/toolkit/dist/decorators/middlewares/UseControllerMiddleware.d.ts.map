@@ -1,0 +1,1 @@
+{"version":3,"file":"UseControllerMiddleware.d.ts","sourceRoot":"","sources":["../../../src/decorators/middlewares/UseControllerMiddleware.ts"],"names":[],"mappings":"AACA,OAAO,KAAK,EAAE,eAAe,EAAE,MAAM,aAAa,CAAC;AAGnD,qEAAqE;AACrE,wBAAgB,uBAAuB,CAAC,GAAG,iBAAiB,EAAE,eAAe,EAAE,GAAG,cAAc,CAM/F"}
