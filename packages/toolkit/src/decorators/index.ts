@@ -1,3 +1,6 @@
+export * from './decorators.constants';
+export * from './decorators.types';
+
 export * from './http/Controller';
 export * from './http/Get';
 export * from './http/Post';
