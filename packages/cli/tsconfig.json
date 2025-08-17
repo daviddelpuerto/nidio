@@ -5,7 +5,8 @@
     "rootDir": "src",
     "outDir": "dist",
     "lib": ["ES2023"],
-    "types": ["node", "reflect-metadata"]
+    "types": ["node", "reflect-metadata"],
+    "resolveJsonModule": true,
   },
   "include": ["src/**/*.ts"]
 }
