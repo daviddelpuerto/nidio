@@ -11,6 +11,7 @@
   },
   "scripts": {
     "build": "tsc -b -v tsconfig.build.json",
+    "typecheck": "tsc -b -v --pretty false tsconfig.build.json",
     "clean": "tsc -b tsconfig.build.json --clean && rimraf node_modules packages/*/dist",
     "lint": "eslint \"packages/*/src/**/*.ts\"",
     "test": "vitest run",
