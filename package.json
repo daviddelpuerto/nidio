@@ -12,7 +12,7 @@
   "scripts": {
     "build": "tsc -b -v tsconfig.build.json",
     "clean": "tsc -b tsconfig.build.json --clean && rimraf node_modules packages/*/dist",
-    "lint": "eslint . --ext .ts,.mts,.cts",
+    "lint": "eslint \"packages/*/src/**/*.ts\"",
     "test": "vitest run",
     "release": "changeset version && npm run build && changeset publish"
   },
