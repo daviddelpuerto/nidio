@@ -5,6 +5,7 @@ import { defineConfig } from 'eslint/config';
 import eslintPluginPrettier from 'eslint-plugin-prettier/recommended';
 
 export default defineConfig([
+  { ignores: ['**/dist/**', '**/*.d.ts'] },
   {
     files: ['**/*.{ts,mts,cts}'],
     plugins: { js },
