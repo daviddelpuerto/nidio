@@ -370,12 +370,13 @@ async function runMiddlewarePipelineSequentially(
   res: FrameworkResponse,
   middlewarePipeline: MiddlewareInterface[],
 ): Promise<boolean> {
-  if (middlewarePipeline.length === 0) return true;
+  const middlewarePipelineLength = middlewarePipeline.length;
+  if (middlewarePipelineLength === 0) return true;
 
   let proceed = false;
   const next = () => (proceed = true);
 
-  for (let i = 0, len = middlewarePipeline.length; i < len; i++) {
+  for (let i = 0; i < middlewarePipelineLength; i++) {
     proceed = false;
     const maybe = middlewarePipeline[i].use(req as any, res as any, next);
     if (maybe && typeof (maybe as Promise<void>).then === 'function') {
