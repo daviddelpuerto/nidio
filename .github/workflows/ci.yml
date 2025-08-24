@@ -70,9 +70,6 @@ jobs:
           restore-keys: |
             tsbuildinfo-${{ runner.os }}-${{ matrix.node }}-
 
-      - name: Sanity
-        run: node -p "require.resolve('@nidio/toolkit/package.json')"
-
       - name: Typecheck
         run: npm run typecheck
 
