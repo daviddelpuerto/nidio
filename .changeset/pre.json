@@ -6,5 +6,5 @@
     "@nidio/engine": "0.1.0",
     "@nidio/toolkit": "0.1.0"
   },
-  "changesets": []
+  "changesets": ["flat-symbols-call"]
 }
