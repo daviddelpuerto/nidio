@@ -29,13 +29,13 @@ export function normalizeError(err: unknown, requestId?: string): { status: numb
 
   if (err instanceof HttpException) {
     const httpException = err as HttpException;
-    const status = err.getStatus();
-    const response = err.getResponse();
+    const status = httpException.getStatus();
+    const response = httpException.getResponse();
 
     const message =
       response && typeof response === 'object' && 'message' in (response as Record<string, unknown>)
         ? (response as Record<string, unknown>).message
-        : err.message;
+        : httpException.message;
 
     const details =
       response && typeof response === 'object' && 'details' in (response as Record<string, unknown>)
