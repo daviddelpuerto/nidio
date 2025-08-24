@@ -1,6 +1,6 @@
 {
   "name": "@nidio/engine",
-  "version": "0.1.0-alpha.0",
+  "version": "0.1.0-alpha.1",
   "description": "Nidio runtime utilities: DI, bootstrap, router, adapters (internal), logger facade",
   "license": "MIT",
   "main": "./dist/index.js",
@@ -23,7 +23,7 @@
   "dependencies": {
     "@fastify/compress": "^8.1.0",
     "@fastify/helmet": "^13.0.1",
-    "@nidio/toolkit": "^0.1.0-alpha.0",
+    "@nidio/toolkit": "^0.1.0-alpha.1",
     "@types/compression": "^1.8.1",
     "@types/express": "^5.0.3",
     "compression": "^1.8.1",
