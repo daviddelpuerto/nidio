@@ -1,6 +1,6 @@
 {
   "name": "@nidio/toolkit",
-  "version": "0.0.0",
+  "version": "0.1.0-alpha.0",
   "description": "Nidio public API: decorators, tokens, shared types, HTTP exceptions",
   "license": "MIT",
   "main": "./dist/index.js",
