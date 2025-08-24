@@ -1,6 +1,6 @@
 {
   "name": "@nidio/cli",
-  "version": "0.1.0-alpha.0",
+  "version": "0.1.0-alpha.1",
   "description": "Nidio scaffolding CLI",
   "license": "MIT",
   "bin": {
@@ -24,8 +24,8 @@
   },
   "sideEffects": false,
   "dependencies": {
-    "@nidio/engine": "^0.1.0-alpha.0",
-    "@nidio/toolkit": "^0.1.0-alpha.0",
+    "@nidio/engine": "^0.1.0-alpha.1",
+    "@nidio/toolkit": "^0.1.0-alpha.1",
     "commander": "^12.1.0",
     "fast-glob": "^3.3.3"
   },
