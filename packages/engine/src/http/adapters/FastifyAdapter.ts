@@ -27,13 +27,11 @@ export class FastifyAdapter implements HttpAdapter {
       method: httpMethod.toUpperCase() as HttpMethod,
       url: fullPath,
       handler: (request: FastifyRequest, reply: FastifyReply): void => {
-        const frameworkReq: FrameworkRequest = Object.assign(request.raw, {
-          body: request.body,
-          params: request.params as Record<string, string>,
-          query: request.query as Record<string, unknown>,
-          headers: request.headers as Record<string, string | string[] | undefined>,
-          requestId: (request.raw as FrameworkRequest).requestId,
-        });
+        const frameworkReq: FrameworkRequest = request.raw;
+        frameworkReq.body = request.body;
+        frameworkReq.params = request.params as Record<string, string>;
+        frameworkReq.query = request.query as Record<string, unknown>;
+        frameworkReq.headers = request.headers as Record<string, string | string[] | undefined>;
 
         void handlerFn(frameworkReq, reply.raw);
       },
