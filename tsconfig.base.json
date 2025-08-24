@@ -26,9 +26,9 @@
 
     "baseUrl": ".",
     "paths": {
-      "@nidio/toolkit": ["packages/toolkit/src/index.ts"],
-      "@nidio/engine": ["packages/engine/src/index.ts"],
-      "@nidio/cli": ["packages/cli/src/index.ts"]
+      "@nidio/toolkit": ["packages/toolkit/dist/index.d.ts"],
+      "@nidio/engine": ["packages/engine/dist/index.d.ts"],
+      "@nidio/cli": ["packages/cli/dist/index.d.ts"]
     }
   }
 }

@@ -28,6 +28,7 @@ export function normalizeError(err: unknown, requestId?: string): { status: numb
   const rid = requestId ? `[${requestId}]` : '[-]';
 
   if (err instanceof HttpException) {
+    const httpException = err as HttpException;
     const status = err.getStatus();
     const response = err.getResponse();
 
@@ -43,12 +44,12 @@ export function normalizeError(err: unknown, requestId?: string): { status: numb
 
     const body: Record<string, unknown> = {
       statusCode: status,
-      error: err.name ?? 'Error',
+      error: httpException.name ?? 'Error',
       message,
     };
     if (details !== undefined) body.details = details;
 
-    logger.error(`[${err.name ?? 'HttpException'}] ${rid} ${err.message}`);
+    logger.error(`[${httpException.name ?? 'HttpException'}] ${rid} ${httpException.message}`);
     return { status, body };
   }
 
