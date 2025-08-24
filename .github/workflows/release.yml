@@ -1,81 +1,47 @@
 name: Release
 
 on:
-  workflow_dispatch:
-    inputs:
-      mode:
-        description: "Release mode: 'publish' publishes to npm; 'prepare' opens/updates the Version Packages PR."
-        type: choice
-        required: true
-        default: publish
-        options:
-          - publish
-          - prepare
-      distTag:
-        description: 'npm dist-tag for publish (latest/next/alpha)'
-        type: choice
-        required: false
-        default: latest
-        options:
-          - latest
-          - next
-          - alpha
+  push:
+    branches: [main]
+  workflow_dispatch: {}
 
 permissions:
   contents: write
   pull-requests: write
 
-concurrency:
-  group: release-${{ github.ref }}
-  cancel-in-progress: true
-
 jobs:
   release:
-    name: Version & Publish (Changesets)
+    name: Version or Publish (Changesets)
     runs-on: ubuntu-latest
-    timeout-minutes: 20
-    environment: release
-
+    env:
+      NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
-      - name: Checkout main
+      - name: Checkout
         uses: actions/checkout@v4
         with:
-          ref: main
           fetch-depth: 0
 
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: 22
+          registry-url: 'https://registry.npmjs.org'
           cache: npm
-          registry-url: https://registry.npmjs.org
-
-      - name: Configure npm auth
-        run: echo "registry=https://registry.npmjs.org" > ~/.npmrc
 
       - name: Install
         run: npm ci
 
-      - name: Build (project refs)
-        run: npm run build
-
-      # PREPARE: open/update Version Packages PR (no publish)
-      - name: Create/Update Version Packages PR
-        if: ${{ inputs.mode == 'prepare' }}
+      # Changesets will:
+      # - if pending changesets → open/update "Version Packages (alpha)" PR
+      # - if on main with version commit → run publish command below
+      - name: Create Version PR or Publish
         uses: changesets/action@v1
         with:
-          title: 'chore(release): version packages'
+          title: 'Version Packages (alpha)'
+          commit: 'chore(release): version packages (alpha)'
+          # This command runs ONLY on publish (not when opening the PR)
+          publish: 'npm run changeset:publish'
         env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      # PUBLISH: publish if versions already merged; else opens Version PR
-      - name: Publish via Changesets
-        if: ${{ inputs.mode == 'publish' }}
-        uses: changesets/action@v1
-        with:
-          publish: npm run release
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-          # Force the npm dist-tag (so alphas don’t overwrite 'latest')
-          NPM_CONFIG_TAG: ${{ inputs.distTag }}
