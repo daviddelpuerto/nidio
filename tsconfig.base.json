@@ -22,13 +22,6 @@
     "sourceMap": true,
     "newLine": "lf",
 
-    "esModuleInterop": true,
-
-    "baseUrl": ".",
-    "paths": {
-      "@nidio/toolkit": ["packages/toolkit/dist/index.d.ts"],
-      "@nidio/engine": ["packages/engine/dist/index.d.ts"],
-      "@nidio/cli": ["packages/cli/dist/index.d.ts"]
-    }
+    "esModuleInterop": true
   }
 }

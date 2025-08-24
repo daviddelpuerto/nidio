@@ -9,5 +9,6 @@
     "types": ["node", "reflect-metadata"],
     "resolveJsonModule": true
   },
-  "include": ["src/**/*.ts"]
+  "include": ["src/**/*.ts"],
+  "references": [{ "path": "../engine" }, { "path": "../toolkit" }]
 }
