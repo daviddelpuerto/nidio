@@ -11,6 +11,8 @@
     "node": ">=20.6.0"
   },
   "scripts": {
+    "changeset:version": "changeset version",
+    "changeset:publish": "npm run build && changeset publish",
     "build": "tsc -b -v tsconfig.build.json",
     "build:force": "tsc -b -v --force tsconfig.build.json",
     "rebuild": "npm run clean && npm run build",
