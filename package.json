@@ -13,6 +13,7 @@
     "build": "tsc -b -v tsconfig.build.json",
     "typecheck": "tsc -b -v --pretty false tsconfig.build.json",
     "clean": "tsc -b tsconfig.build.json --clean && rimraf node_modules packages/*/dist",
+    "rebuild": "npm run clean && npm run build",
     "lint": "eslint \"packages/*/src/**/*.ts\"",
     "test": "vitest run",
     "release": "changeset version && npm run build && changeset publish",
