@@ -3,6 +3,7 @@
   "private": true,
   "description": "Nidio monorepo",
   "version": "0.0.0",
+  "license": "MIT",
   "workspaces": [
     "packages/*"
   ],
@@ -11,13 +12,14 @@
   },
   "scripts": {
     "build": "tsc -b -v tsconfig.build.json",
+    "build:force": "tsc -b -v --force tsconfig.build.json",
+    "rebuild": "npm run clean && npm run build",
+    "clean": "tsc -b tsconfig.build.json --clean && rimraf packages/*/dist",
     "typecheck": "tsc -b -v --pretty false tsconfig.build.json",
-    "clean": "tsc -b tsconfig.build.json --clean && rimraf node_modules packages/*/dist",
-    "rebuild": "npm run clean && npm i && npm run build",
-    "lint": "eslint \"packages/*/src/**/*.ts\"",
+    "lint": "eslint \"packages/*/src/**/*.{ts,mts,cts}\"",
     "test": "vitest run",
     "release": "changeset version && npm run build && changeset publish",
-    "prepare": "husky"
+    "prepare": "husky install"
   },
   "devDependencies": {
     "@changesets/cli": "^2.27.9",
