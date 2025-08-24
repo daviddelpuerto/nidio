@@ -24,6 +24,8 @@
   },
   "sideEffects": false,
   "dependencies": {
+    "@nidio/engine": "^0.1.0-alpha.0",
+    "@nidio/toolkit": "^0.1.0-alpha.0",
     "commander": "^12.1.0",
     "fast-glob": "^3.3.3"
   },
