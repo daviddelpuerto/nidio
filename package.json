@@ -2,7 +2,7 @@
   "name": "nidio",
   "private": true,
   "description": "Nidio monorepo",
-  "version": "0.1.0",
+  "version": "0.0.0",
   "workspaces": [
     "packages/*"
   ],
@@ -15,9 +15,9 @@
     "clean": "tsc -b tsconfig.build.json --clean && rimraf node_modules packages/*/dist",
     "lint": "eslint \"packages/*/src/**/*.ts\"",
     "test": "vitest run",
-    "release": "changeset version && npm run build && changeset publish"
+    "release": "changeset version && npm run build && changeset publish",
+    "prepare": "husky"
   },
-  "dependencies": {},
   "devDependencies": {
     "@changesets/cli": "^2.27.9",
     "@eslint/js": "^9.14.0",
@@ -25,11 +25,20 @@
     "eslint": "^9.14.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-prettier": "^5.2.1",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.1.5",
     "prettier": "^3.3.3",
     "reflect-metadata": "^0.2.2",
     "rimraf": "^6.0.1",
     "typescript": "^5.6.3",
     "typescript-eslint": "^8.8.1",
     "vitest": "^3.2.4"
+  },
+  "lint-staged": {
+    "packages/*/src/**/*.ts": [
+      "eslint --max-warnings=0 --fix",
+      "prettier --write"
+    ],
+    "*.{json,md,yml,yaml}": "prettier --write"
   }
 }
