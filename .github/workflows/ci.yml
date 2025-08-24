@@ -85,17 +85,11 @@ jobs:
           node-version: ${{ matrix.node }}
           cache: npm
 
+      - name: Clean previous build artifacts
+        run: npm run clean
+
       - name: Install
         run: npm ci
-
-      - name: Cache TS build info
-        uses: actions/cache@v4
-        with:
-          path: |
-            packages/*/tsconfig.tsbuildinfo
-          key: tsbuildinfo-${{ runner.os }}-${{ matrix.node }}-${{ hashFiles('**/tsconfig*.json') }}
-          restore-keys: |
-            tsbuildinfo-${{ runner.os }}-${{ matrix.node }}-
 
       - name: Build all packages
         run: npm run build
