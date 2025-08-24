@@ -28,7 +28,7 @@ export class ExpressAdapter implements HttpAdapter {
   }
 
   public registerRoute(method: FrameworkHttpMethod, path: string, handler: FrameworkHandler): void {
-    this.expressApp[method](path, (req: Request, res: Response) => void handler(req, res));
+    this.expressApp[method](path, handler as (req: Request, res: Response) => void);
   }
 
   private setupGlobalMiddlewares(): void {

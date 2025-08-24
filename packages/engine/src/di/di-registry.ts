@@ -16,7 +16,9 @@ import { Container } from './Container';
 export function registerImports(container: Container, imports?: ImportValue[]): void {
   if (!imports || imports.length === 0) return;
   for (const entry of imports) {
-    const [token, value]: [DependencyToken, unknown] = Array.isArray(entry) ? entry : [entry.token, entry.value];
+    const [token, value]: [DependencyToken, unknown] = Array.isArray(entry)
+      ? (entry as [DependencyToken, unknown])
+      : [entry.token, entry.value];
     container.register(token, value, 'import');
   }
 }
