@@ -1,7 +1,11 @@
 # compiled output
-/build
 /dist
+/packages/*/dist/
 /node_modules
+/packages/*/node_modules/
+
+tsconfig.tsbuildinfo
+packages/*/tsconfig.tsbuildinfo
 
 # Logs
 logs
