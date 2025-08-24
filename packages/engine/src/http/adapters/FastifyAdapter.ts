@@ -1,5 +1,7 @@
 import type { Server as HTTPServer, IncomingMessage, ServerResponse } from 'http';
 import fastify, { FastifyInstance, FastifyRequest, FastifyReply } from 'fastify';
+import helmet from '@fastify/helmet';
+import compress from '@fastify/compress';
 import { HttpMethod } from '@nidio/toolkit';
 import type {
   FrameworkHandler,
@@ -52,8 +54,14 @@ export class FastifyAdapter implements HttpAdapter {
     await this.fastifyInstance.ready();
   }
 
-  /** Register here global plugins, hooks, CORS, etc. */
+  /**
+   * Register global plugins & hooks at bootstrap (never on the hot path).
+   * - requestId / requestLog via onRequest hooks
+   * - security headers via @fastify/helmet
+   * - compression via @fastify/compress
+   */
   private installGlobalPluginsAndHooks(): void {
+    // --- Built-in hooks (requestId, access log) ---
     if (this.options.requestId) {
       this.fastifyInstance.addHook('onRequest', (req, reply, done) => {
         requestIdMiddleware(req.raw as IncomingMessage, reply.raw as ServerResponse, (err?) => done(err));
@@ -64,6 +72,18 @@ export class FastifyAdapter implements HttpAdapter {
       this.fastifyInstance.addHook('onRequest', (req, reply, done) => {
         requestLogMiddleware(req.raw as IncomingMessage, reply.raw as ServerResponse, (err?) => done(err));
       });
+    }
+
+    // --- Plugins: helmet (security headers) ---
+    if (this.options.helmet) {
+      const helmetOpts = typeof this.options.helmet === 'object' ? this.options.helmet : {};
+      this.fastifyInstance.register(helmet, helmetOpts);
+    }
+
+    // --- Plugins: compress (gzip/deflate/brotli) ---
+    if (this.options.compression) {
+      const compressOpts = typeof this.options.compression === 'object' ? this.options.compression : {};
+      this.fastifyInstance.register(compress, compressOpts);
     }
   }
 }
