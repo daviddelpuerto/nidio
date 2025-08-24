@@ -230,7 +230,7 @@ function buildValidationAsMiddleware(
   if (isAsyncValidationAdapter) {
     // Async version (await calls), compiled once
     const validationMiddleware: MiddlewareInterface = {
-      use: async (req, _res, next) => {
+      use: async (req: FrameworkRequest, _res: FrameworkResponse, next: () => void) => {
         if (hasBody) req.body = await validationAdapter.validate(BodyDto, req.body);
         if (hasQuery) req.query = (await validationAdapter.validate(QueryDto, req.query)) as any;
         if (hasParams) req.params = (await validationAdapter.validate(ParamsDto, req.params as any)) as any;
@@ -243,7 +243,7 @@ function buildValidationAsMiddleware(
 
   // Sync version
   const validationMiddleware: MiddlewareInterface = {
-    use: (req, _res, next) => {
+    use: (req: FrameworkRequest, _res: FrameworkResponse, next: () => void) => {
       if (hasBody) req.body = validationAdapter.validate(BodyDto, req.body);
       if (hasQuery) req.query = validationAdapter.validate(QueryDto, req.query) as any;
       if (hasParams) req.params = validationAdapter.validate(ParamsDto, req.params) as any;
