@@ -21,16 +21,7 @@
     "declarationMap": true,
     "sourceMap": true,
     "newLine": "lf",
-
     "esModuleInterop": true,
-
-    "composite": true,
-
-    "baseUrl": ".",
-    "paths": {
-      "@nidio/toolkit": ["packages/toolkit/src/index.ts"],
-      "@nidio/engine": ["packages/engine/src/index.ts"],
-      "@nidio/cli": ["packages/cli/src/index.ts"]
-    }
+    "composite": true
   }
 }
