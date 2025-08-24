@@ -1,6 +1,6 @@
 {
   "name": "@nidio/engine",
-  "version": "0.1.0",
+  "version": "0.0.0",
   "description": "Nidio runtime utilities: DI, bootstrap, router, adapters (internal), logger facade",
   "license": "MIT",
   "main": "./dist/index.js",

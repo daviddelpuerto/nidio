@@ -11,9 +11,18 @@ on:
         options:
           - publish
           - prepare
+      distTag:
+        description: 'npm dist-tag for publish (latest/next/alpha)'
+        type: choice
+        required: false
+        default: latest
+        options:
+          - latest
+          - next
+          - alpha
 
 permissions:
-  contents: write         # create tags, changelogs, commits/PRs for versioning
+  contents: write
   pull-requests: write
 
 concurrency:
@@ -25,7 +34,6 @@ jobs:
     name: Version & Publish (Changesets)
     runs-on: ubuntu-latest
     timeout-minutes: 20
-    # Gate with an environment so only approved reviewers can proceed
     environment: release
 
     steps:
@@ -42,7 +50,7 @@ jobs:
           cache: npm
           registry-url: https://registry.npmjs.org
 
-      - name: Configure npm auth (uses NODE_AUTH_TOKEN)
+      - name: Configure npm auth
         run: echo "registry=https://registry.npmjs.org" > ~/.npmrc
 
       - name: Install
@@ -51,17 +59,16 @@ jobs:
       - name: Build (project refs)
         run: npm run build
 
-      # PREPARE MODE: open/update the Version Packages PR (no publish)
+      # PREPARE: open/update Version Packages PR (no publish)
       - name: Create/Update Version Packages PR
         if: ${{ inputs.mode == 'prepare' }}
         uses: changesets/action@v1
         with:
-          title: "chore(release): version packages"
+          title: 'chore(release): version packages'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      # PUBLISH MODE: publish to npm if repo already versioned.
-      # If there are pending changesets, this step will open/refresh the Version PR instead (and not publish).
+      # PUBLISH: publish if versions already merged; else opens Version PR
       - name: Publish via Changesets
         if: ${{ inputs.mode == 'publish' }}
         uses: changesets/action@v1
@@ -70,3 +77,5 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          # Force the npm dist-tag (so alphas don’t overwrite 'latest')
+          NPM_CONFIG_TAG: ${{ inputs.distTag }}

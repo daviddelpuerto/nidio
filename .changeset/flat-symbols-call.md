@@ -4,7 +4,7 @@
 '@nidio/cli': minor
 ---
 
-Initial alpha of Nidio toolkit and engine packages.
+Initial alpha of Nidio packages.
 
 @nidio/toolkit: public API with HTTP & param decorators, DI decorators, versioning/deprecation, TOKENS.VALIDATION_ADAPTER, and HTTP exceptions.
 
